@@ -105,19 +105,21 @@ public class SortSummaryPage extends GUIPage {
 		successValueLabel.setText(Integer.toString(fss.successes.size()));
 		failuresValueLabel.setText(Integer.toString(fss.failures.size()));
 		
-		String[] columnHeaders = new String[] {"Status", "File", "Comments"};
+		String[] columnHeaders = new String[] {"File Name", "File ID", "Status", "Comments"};
 		
-		String[][] overviewData = new String[fsSummary.failures.size()+fsSummary.successes.size()][3];
-		String[][] successData = new String[fsSummary.successes.size()][3];
-		String[][] failureData = new String[fsSummary.failures.size()][3];
+		int numCol = columnHeaders.length;
+		String[][] overviewData = new String[fsSummary.failures.size()+fsSummary.successes.size()][numCol];
+		String[][] successData = new String[fsSummary.successes.size()][numCol];
+		String[][] failureData = new String[fsSummary.failures.size()][numCol];
 		
 		int i = 0;
 		int fI = 0;
 		int sI = 0;
 		for (FileSortSummaryEntry entry: fsSummary.overview) {
-			overviewData[i][0] = entry.isSuccessful  ? "SUCCESS" : "FAILURE";
-			overviewData[i][1] = entry.file.toString();
-			overviewData[i][2] = entry.logStatement;
+			overviewData[i][0] = entry.file.toString();
+			overviewData[i][1] = entry.labelledFileUID;
+			overviewData[i][2] = entry.isSuccessful  ? "SUCCESS" : "FAILURE";
+			overviewData[i][3] = entry.logStatement;
 			
 			if (entry.isSuccessful) {
 				successData[sI++] = overviewData[i];

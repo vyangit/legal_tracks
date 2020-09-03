@@ -59,7 +59,7 @@ public class ArchiveSelectionPage extends GUIPage {
 				boxArchivePathSelector);
 		layout.putConstraint(SpringLayout.WEST, fileArchivePathSelector, 5, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.EAST, fileArchivePathSelector, -5, SpringLayout.EAST, this);
-
+		
 		// Construct excel selection line
 		excelSheetPath = new JTextField();
 		excelSheetPath.setEditable(false);
@@ -67,7 +67,7 @@ public class ArchiveSelectionPage extends GUIPage {
 		JFileChooser excelSheetChooser = new JFileChooser();
 		excelSheetChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		JPanel excelSheetPathSelector = constructSelectFilePanel("Excel list:", excelSheetPath, excelSheetChooser);
-		this.add(excelSheetPathSelector);
+//		this.add(excelSheetPathSelector); 	// TODO: Implement excel editation
 		layout.putConstraint(SpringLayout.NORTH, excelSheetPathSelector, 5, SpringLayout.SOUTH,
 				fileArchivePathSelector);
 		layout.putConstraint(SpringLayout.WEST, excelSheetPathSelector, 5, SpringLayout.WEST, this);

@@ -71,15 +71,15 @@ public class SortRunnable implements Runnable {
 		File fileArchive = new File(apDTO.fileMasterArchiveDirPath);
 		
 		// Validate excel sheet alive state
-		File excelSheet = new File(apDTO.excelSheetFilePath);
-
-		String excelSheetExtension = apDTO.excelSheetFilePath
-				.substring(apDTO.excelSheetFilePath.lastIndexOf('.'));
-		if (!(excelSheet.isFile() && excelSheet.canWrite() && (excelSheetExtension.equals(".csv")
-				|| excelSheetExtension.equals(".xlsx") || excelSheetExtension.equals(".xls")))) {
-			terminateSort("Failure: Excel sheet is not valid");
-			return;
-		}
+//		File excelSheet = new File(apDTO.excelSheetFilePath);
+//
+//		String excelSheetExtension = apDTO.excelSheetFilePath
+//				.substring(apDTO.excelSheetFilePath.lastIndexOf('.'));
+//		if (!(excelSheet.isFile() && excelSheet.canWrite() && (excelSheetExtension.equals(".csv")
+//				|| excelSheetExtension.equals(".xlsx") || excelSheetExtension.equals(".xls")))) {
+//			terminateSort("Failure: Excel sheet is not valid");
+//			return;
+//		}
 
 		// Sort files from archive to corresponding folder in file archive and edit
 		// excel spreadsheet
@@ -88,16 +88,15 @@ public class SortRunnable implements Runnable {
 		int i = 0;
 		int n = lFiles.size();
 		for (LabelledFile lFile : lFiles) {
-			
 			i++;
 			
 			try {
 				LegalFileSorter.sortScannedFileToMasterArchive(lFile, fileArchive);
 //					ExcelEditor.editExcelFileEntry(lFile.uid, 0, excelSheet);
-				fsSummary.addEntryLog(new FileSortSummaryEntry(lFile.originalFile, true, "Successful sorted"));
+				fsSummary.addEntryLog(new FileSortSummaryEntry(lFile, true, "Successful sorted"));
 				logMsg("Sorting " + i + " of " + n + "... SUCCESS");
 			} catch (SortException e) {
-				fsSummary.addEntryLog(new FileSortSummaryEntry(lFile.originalFile, false, e.getMessage()));
+				fsSummary.addEntryLog(new FileSortSummaryEntry(lFile, false, e.getMessage()));
 				logMsg("Sorting " + i + " of " + n + "... FAILURE");
 			} finally {
 				progressPercent += progressPerFile;
