@@ -84,13 +84,12 @@ public class SortSummaryPage extends GUIPage {
 		layout.putConstraint(SpringLayout.NORTH, summaryPanel, 10, SpringLayout.SOUTH, pageHeader);
 		layout.putConstraint(SpringLayout.WEST, summaryPanel, 5, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.EAST, summaryPanel, -5, SpringLayout.EAST, this);
-		
+		layout.putConstraint(SpringLayout.SOUTH, summaryPanel, 60, SpringLayout.SOUTH, pageHeader);
 		// Construct tab container
 		fileSortSummaryPanes = new JTabbedPane();
 
 		this.add(fileSortSummaryPanes);
-		layout.putConstraint(SpringLayout.SOUTH, summaryPanel, -20, SpringLayout.NORTH, fileSortSummaryPanes);
-		layout.putConstraint(SpringLayout.NORTH, fileSortSummaryPanes, -10, SpringLayout.VERTICAL_CENTER, this);
+		layout.putConstraint(SpringLayout.NORTH, fileSortSummaryPanes, 0, SpringLayout.SOUTH, summaryPanel);
 		layout.putConstraint(SpringLayout.WEST, fileSortSummaryPanes, 5, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.EAST, fileSortSummaryPanes, -5, SpringLayout.EAST, this);
 		layout.putConstraint(SpringLayout.SOUTH, fileSortSummaryPanes, -5, SpringLayout.SOUTH, this);
